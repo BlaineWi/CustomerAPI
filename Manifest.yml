@@ -1,6 +1,7 @@
 applications:
 - name: customerapi
-  memory: 512m
-  stack: cflinuxfs2
-  buildpack: https://github.com/cloudfoundry/dotnet-core-buildpack.git
+  memory: 128m
+  stack: cflinuxfs3
+  buildpacks: 
+    - https://github.com/cloudfoundry/dotnet-core-buildpack.git
   path: .\bin\Debug\netcoreapp2.1\linux-x64\ 

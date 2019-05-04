@@ -20,6 +20,8 @@ namespace customerAPI
     public class Startup
     {
 
+        public const string ApiVersion = "1.2";
+
         /// <summary>
         /// CTOR
         /// </summary>
@@ -51,11 +53,11 @@ namespace customerAPI
 
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("1.1",
+                c.SwaggerDoc(ApiVersion,
                     new Info
                     {
                         Title = "Customer API",
-                        Version = "1.1",
+                        Version = ApiVersion,
                         Contact = new Contact()
                         {
                             Email = "spookdejur@hotmail.com",
@@ -92,9 +94,8 @@ namespace customerAPI
             app.UseSwagger();
             app.UseSwaggerUI(c =>
             {
-                c.SwaggerEndpoint("/swagger/1.1/swagger.json", "Customer API V1");
-                c.ShowRequestHeaders();
-                c.ShowJsonEditor();
+                c.SwaggerEndpoint("/swagger/" + ApiVersion + "/swagger.json", "Customer API " + ApiVersion);
+                c.ShowExtensions();
             });
         }
     }

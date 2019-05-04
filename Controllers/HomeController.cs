@@ -16,6 +16,7 @@ namespace customerAPI.Controllers
         /// </summary>
         /// <returns>Swagger page</returns>
         [Route("")]
+        [ApiExplorerSettings(IgnoreApi = true)]
         [HttpGet]
         public IActionResult Index()
         {
