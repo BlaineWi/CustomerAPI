@@ -4,4 +4,4 @@ applications:
   stack: cflinuxfs3
   buildpacks: 
     - https://github.com/cloudfoundry/dotnet-core-buildpack.git
-  path: .\bin\Debug\netcoreapp2.1\linux-x64\ 
+  path: .\bin\Debug\netcoreapp2.2\linux-x64\ 

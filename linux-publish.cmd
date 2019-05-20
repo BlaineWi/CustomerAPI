@@ -1,1 +1,1 @@
-dotnet publish -v d -o ".//bin//Debug//netcoreapp2.1//linux-x64" --framework netcoreapp2.1 --runtime linux-x64 customerAPI.csproj 
+dotnet publish -v d -o ".//bin//Debug//netcoreapp2.2//linux-x64" --framework netcoreapp2.2 --runtime linux-x64 customerAPI.csproj 

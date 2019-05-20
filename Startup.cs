@@ -20,6 +20,9 @@ namespace customerAPI
     public class Startup
     {
 
+        /// <summary>
+        /// API Version
+        /// </summary>
         public const string ApiVersion = "1.2";
 
         /// <summary>

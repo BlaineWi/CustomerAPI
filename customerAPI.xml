@@ -228,6 +228,11 @@
             Start Up
             </summary>
         </member>
+        <member name="F:customerAPI.Startup.ApiVersion">
+            <summary>
+            API Version
+            </summary>
+        </member>
         <member name="M:customerAPI.Startup.#ctor(Microsoft.Extensions.Configuration.IConfiguration)">
             <summary>
             CTOR
