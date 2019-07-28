@@ -24,7 +24,7 @@ namespace customerAPI
         /// <summary>
         /// API Version
         /// </summary>
-        public const string ApiVersion = "1.3";
+        public const string ApiVersion = "1.4";
 
         /// <summary>
         /// CTOR

@@ -3,7 +3,7 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp2.2</TargetFramework>
     <AssemblyName>customerAPI</AssemblyName>
-    <Version>1.3.0</Version>
+    <Version>1.4.0</Version>
     <Authors>Stuart Williams</Authors>
     <Company>Blitzkrieg Software</Company>
     <Description>A Demo WebAPI w. Swagger</Description>
@@ -13,8 +13,8 @@
     <PackageProjectUrl>https://github.com/blitzkriegsoftware/customerapi</PackageProjectUrl>
     <RepositoryType>GIT</RepositoryType>
     <PackageTags>Demo, WebAPI, .NET Core</PackageTags>
-    <AssemblyVersion>1.3.0.0</AssemblyVersion>
-    <FileVersion>1.3.0.0</FileVersion>
+    <AssemblyVersion>1.4.0.0</AssemblyVersion>
+    <FileVersion>1.4.0.0</FileVersion>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
