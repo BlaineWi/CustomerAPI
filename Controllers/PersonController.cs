@@ -99,21 +99,19 @@ namespace customerAPI.Controllers
         [ProducesResponseType(typeof(void), 404)]
         public Models.Person AddUpdate(Models.Person model)
         {
-            if ((string.IsNullOrWhiteSpace(model._id)) || (model._id == Guid.Empty.ToString()))
+            var model2 = DataAccess.DataFactory.People.Where(p => p._id == model._id).FirstOrDefault();
+
+            if ((string.IsNullOrWhiteSpace(model._id)) || (model._id == Guid.Empty.ToString()) || (model2 == null))
             {
-                model._id = Guid.NewGuid().ToString();
+                if ((string.IsNullOrWhiteSpace(model._id)) || (model._id == Guid.Empty.ToString())) model._id = Guid.NewGuid().ToString();
                 DataAccess.DataFactory.PersonList.Add(model);
                 Response.StatusCode = (int)HttpStatusCode.Created;
             } else
             {
-                var model2 = DataAccess.DataFactory.People.Where(p => p._id == model._id).FirstOrDefault();
-                if (model2 == null)
-                {
-                    throw new KeyNotFoundException("No Key Found Matching: " + model._id);
-                }
                 DataAccess.DataFactory.PersonList.Remove(model2);
                 DataAccess.DataFactory.PersonList.Add(model);
             }
+
             return model;
         }
 
