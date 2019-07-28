@@ -12,7 +12,31 @@ namespace customerAPI.DataAccess
     {
         private const int PeopleCount = 100;
 
-        private static IQueryable<Models.Person> _people = null;
+        private static List<Models.Person> _list = null;
+
+        /// <summary>
+        /// Person List
+        /// </summary>
+        public static List<Models.Person> PersonList
+        {
+            get
+            {
+                if(_list == null)
+                {
+                    _list = new List<Models.Person>();
+                    for (int i = 0; i < PeopleCount; i++)
+                    {
+                        var p = ModelMaker.PersonMake();
+                        _list.Add(p);
+                    }
+                }
+                return _list;
+            }
+            set
+            {
+                _list = value;
+            }
+        }
 
         /// <summary>
         /// People
@@ -21,17 +45,7 @@ namespace customerAPI.DataAccess
         {
             get
             {
-                if(_people ==null)
-                {
-                    var list = new List<Models.Person>();
-                    for(int i=0;i<PeopleCount;i++)
-                    {
-                        var p = ModelMaker.PersonMake();
-                        list.Add(p);
-                    }
-                    _people = list.AsQueryable<Models.Person>();
-                }
-                return _people;
+                return  PersonList.AsQueryable<Models.Person>();
             }
         }
 

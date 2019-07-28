@@ -3,7 +3,18 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp2.2</TargetFramework>
     <AssemblyName>customerAPI</AssemblyName>
-    <Version>1.2.0</Version>
+    <Version>1.3.0</Version>
+    <Authors>Stuart Williams</Authors>
+    <Company>Blitzkrieg Software</Company>
+    <Description>A Demo WebAPI w. Swagger</Description>
+    <Copyright>(c) 2018-2019</Copyright>
+    <PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
+    <RepositoryUrl>https://github.com/blitzkriegsoftware/customerapi</RepositoryUrl>
+    <PackageProjectUrl>https://github.com/blitzkriegsoftware/customerapi</PackageProjectUrl>
+    <RepositoryType>GIT</RepositoryType>
+    <PackageTags>Demo, WebAPI, .NET Core</PackageTags>
+    <AssemblyVersion>1.3.0.0</AssemblyVersion>
+    <FileVersion>1.3.0.0</FileVersion>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -12,14 +23,26 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="bin\**" />
     <Compile Remove="lib\**" />
     <Compile Remove="wwwroot\**" />
+    <Content Remove="bin\**" />
     <Content Remove="lib\**" />
     <Content Remove="wwwroot\**" />
+    <EmbeddedResource Remove="bin\**" />
     <EmbeddedResource Remove="lib\**" />
     <EmbeddedResource Remove="wwwroot\**" />
+    <None Remove="bin\**" />
     <None Remove="lib\**" />
     <None Remove="wwwroot\**" />
+    <None Include="LICENSE">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
+    <None Include="LICENSE.txt">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
   </ItemGroup>
 
   <ItemGroup>
@@ -28,7 +51,10 @@
 
   <ItemGroup>
     <None Remove=".gitignore" />
+    <None Remove="assets\css\Override.css" />
+    <None Remove="assets\js\AddLogo.js" />
     <None Remove="build.sh" />
+    <None Remove="favicon-32x32.png" />
     <None Remove="LICENSE" />
     <None Remove="README.md" />
     <None Remove="runlocal.sh" />
@@ -47,13 +73,24 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Update="customerAPI.xml">
+    <Content Include="assets\images\favicon-32x32.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
+    </Content>
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="bin\linux-x64\" />
+    <Content Include="assets\css\Override.css">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\js\AddLogo.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="customerAPI.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
 </Project>

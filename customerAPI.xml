@@ -36,11 +36,37 @@
             </summary>
             <param name="text">Search Text</param>
             <returns>Search results</returns>
+            <response code="200">Success</response>
             <response code="400">Missing Search Text</response>
+        </member>
+        <member name="M:customerAPI.Controllers.PersonController.Delete(System.String)">
+            <summary>
+            Delete a person
+            </summary>
+            <param name="id">Id to delete</param>
+            <response code="200">(ok)</response>
+            <response code="204">(deleted)</response>
+            <response code="404">ID Not Found</response>
+        </member>
+        <member name="M:customerAPI.Controllers.PersonController.AddUpdate(customerAPI.Models.Person)">
+            <summary>
+            Add / Update a Person Record. 
+            If adding use the empty string or empty GUID as <c>_id</c>
+            </summary>
+            <param name="model">Person</param>
+            <returns>Person</returns>
+            <response code="200">Person</response>
+            <response code="201">Person</response>
+            <response code="404">Not Found</response>
         </member>
         <member name="T:customerAPI.DataAccess.DataFactory">
             <summary>
             Data Factory
+            </summary>
+        </member>
+        <member name="P:customerAPI.DataAccess.DataFactory.PersonList">
+            <summary>
+            Person List
             </summary>
         </member>
         <member name="P:customerAPI.DataAccess.DataFactory.People">

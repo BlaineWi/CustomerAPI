@@ -11,6 +11,8 @@ using Microsoft.Extensions.Options;
 using Swashbuckle.AspNetCore.Swagger;
 using Microsoft.Extensions.PlatformAbstractions;
 using System.IO;
+using Microsoft.Extensions.FileProviders;
+using System.Reflection;
 
 namespace customerAPI
 {
@@ -22,7 +24,7 @@ namespace customerAPI
         /// <summary>
         /// API Version
         /// </summary>
-        public const string ApiVersion = "1.2";
+        public const string ApiVersion = "1.3";
 
         /// <summary>
         /// CTOR
@@ -91,11 +93,37 @@ namespace customerAPI
                 app.UseDeveloperExceptionPage();
             }
 
+            app.UseStaticFiles();
+
+            app.UseStaticFiles(new StaticFileOptions
+            {
+                FileProvider = new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), "assets","images")),
+                RequestPath = new Microsoft.AspNetCore.Http.PathString("/assets/images")
+            });
+
+            app.UseStaticFiles(new StaticFileOptions
+            {
+                FileProvider = new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), "assets", "js")),
+                RequestPath = new Microsoft.AspNetCore.Http.PathString("/assets/js")
+            });
+
+            app.UseStaticFiles(new StaticFileOptions
+            {
+                FileProvider = new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), "assets", "css")),
+                RequestPath = new Microsoft.AspNetCore.Http.PathString("/assets/css")
+            });
+
             app.UseMvc();
+
+            var imgPath = env.WebRootPath + "/assets/images/favicon-32x32.png";
 
             app.UseSwagger();
             app.UseSwaggerUI(c =>
             {
+                c.HeadContent = "<link rel=\"icon\" type=\"image/png\" href=\"" + imgPath + "\" sizes=\"32x32\" />";
+                c.InjectStylesheet("/assets/css/Override.css");
+                c.InjectJavascript("/assets/js/AddLogo.js");
+
                 c.SwaggerEndpoint("/swagger/" + ApiVersion + "/swagger.json", "Customer API " + ApiVersion);
                 c.ShowExtensions();
             });
