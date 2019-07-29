@@ -5,6 +5,7 @@ using System.Net;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 
 namespace customerAPI.Controllers
 {
@@ -15,6 +16,18 @@ namespace customerAPI.Controllers
     [Route("Person")]
     public class PersonController : Controller
     {
+        private ILogger<PersonController> _logger = null;
+
+        /// <summary>
+        /// CTOR
+        /// </summary>
+        /// <param name="logger">ILogger</param>
+        public PersonController(ILogger<PersonController> logger)
+        {
+            _logger = logger;
+        }
+
+
         /// <summary>
         /// Get by Id
         /// </summary>
@@ -29,6 +42,8 @@ namespace customerAPI.Controllers
         [HttpGet("{id}")]
         public Models.Person Get(string id)
         {
+            _logger.LogInformation("Get: {0}", id);
+
             if (string.IsNullOrWhiteSpace(id))
             {
                 throw new ArgumentException("id must be a valid value", nameof(id));
@@ -53,6 +68,8 @@ namespace customerAPI.Controllers
         [HttpGet("Search/{text}")]
         public IEnumerable<Models.Person> Search(string text)
         {
+            _logger.LogInformation("Search: {0}", text);
+
             if (string.IsNullOrWhiteSpace(text))
             {
                 throw new ArgumentException("Search Text must be provided", nameof(text));
@@ -75,6 +92,8 @@ namespace customerAPI.Controllers
         [HttpDelete("{id}")]
         public void Delete(string id)
         {
+            _logger.LogInformation("Delete: {0}", id);
+
             var model = DataAccess.DataFactory.People.Where(p => p._id == id).FirstOrDefault();
             if (model == null)
             {
@@ -99,6 +118,8 @@ namespace customerAPI.Controllers
         [ProducesResponseType(typeof(void), 404)]
         public Models.Person AddUpdate(Models.Person model)
         {
+            _logger.LogInformation("Add/Update: {0}", model._id);
+
             var model2 = DataAccess.DataFactory.People.Where(p => p._id == model._id).FirstOrDefault();
 
             if ((string.IsNullOrWhiteSpace(model._id)) || (model._id == Guid.Empty.ToString()) || (model2 == null))

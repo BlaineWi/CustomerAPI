@@ -51,6 +51,7 @@ namespace customerAPI.Models
         }
 
         private Dictionary<string, string> _preference = null;
+
         /// <summary>
         /// Preferences
         /// </summary>

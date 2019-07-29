@@ -3,6 +3,8 @@
 This little demo app is to show how to:
 
 * Implement an ASP.NET Core Web API project
+* Add logging
+* Add health checks
 * Customize it with a global error handler
 * Add and customize swagger
 * Build a docker container

@@ -24,7 +24,7 @@ namespace customerAPI
         /// <summary>
         /// API Version
         /// </summary>
-        public const string ApiVersion = "1.4";
+        public const string ApiVersion = "1.5";
 
         /// <summary>
         /// CTOR
@@ -46,6 +46,19 @@ namespace customerAPI
         /// <param name="services">IServiceCollection</param>
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddLogging(loggingBuilder => {
+                // This line must be 1st
+                loggingBuilder.SetMinimumLevel(LogLevel.Trace);
+
+                // Console is generically cloud friendly
+                loggingBuilder.AddConsole();
+                loggingBuilder.AddDebug();
+            });
+
+            services.AddHealthChecks();
+
+            services.AddHealthChecks().AddCheck<CustomerHealthCheck>("customer_health_check");
+
             services.AddMvc(
                  config =>
                  {
@@ -92,6 +105,8 @@ namespace customerAPI
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            app.UseHealthChecks("/health");
 
             app.UseStaticFiles();
 

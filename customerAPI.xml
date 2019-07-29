@@ -20,6 +20,12 @@
             Person Operations
             </summary>
         </member>
+        <member name="M:customerAPI.Controllers.PersonController.#ctor(Microsoft.Extensions.Logging.ILogger{customerAPI.Controllers.PersonController})">
+            <summary>
+            CTOR
+            </summary>
+            <param name="logger">ILogger</param>
+        </member>
         <member name="M:customerAPI.Controllers.PersonController.Get(System.String)">
             <summary>
             Get by Id
@@ -58,6 +64,24 @@
             <response code="200">Person</response>
             <response code="201">Person</response>
             <response code="404">Not Found</response>
+        </member>
+        <member name="T:customerAPI.CustomerHealthCheck">
+            <summary>
+            Health Check: Customer
+            </summary>
+        </member>
+        <member name="M:customerAPI.CustomerHealthCheck.#ctor(Microsoft.Extensions.Logging.ILogger{customerAPI.CustomerHealthCheck})">
+            <summary>
+            CTOR, add injected stuff if needed
+            </summary>
+        </member>
+        <member name="M:customerAPI.CustomerHealthCheck.CheckHealthAsync(Microsoft.Extensions.Diagnostics.HealthChecks.HealthCheckContext,System.Threading.CancellationToken)">
+            <summary>
+            Actual implementation
+            </summary>
+            <param name="context">HealthCheckContext</param>
+            <param name="cancellationToken">CancellationToken</param>
+            <returns>HealthCheckResult</returns>
         </member>
         <member name="T:customerAPI.DataAccess.DataFactory">
             <summary>
