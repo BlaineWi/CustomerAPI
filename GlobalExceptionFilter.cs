@@ -15,7 +15,10 @@ namespace customerAPI
     /// </summary>
     public class GlobalExceptionFilter : IExceptionFilter, IDisposable
     {
-        private readonly ILogger _logger;
+        /// <summary>
+        /// Field: ILogger
+        /// </summary>
+        protected readonly ILogger _logger = null;
 
         /// <summary>
         /// CTOR
@@ -31,12 +34,37 @@ namespace customerAPI
             this._logger = logger.CreateLogger("Global Exception Filter");
         }
 
+        #region "Dispose"
+        // Flag: Has Dispose already been called?
+        bool disposed = false;
+
         /// <summary>
-        /// Dispose
+        /// Public implementation of Dispose pattern callable by consumers.
         /// </summary>
         public void Dispose()
         {
+            Dispose(true);
+            GC.SuppressFinalize(this);
         }
+
+        /// <summary>
+        /// Protected implementation of Dispose pattern.
+        /// </summary>
+        /// <param name="disposing">bool</param>
+        protected virtual void Dispose(bool disposing)
+        {
+            if (disposed)
+                return;
+
+            if (disposing)
+            {
+                // dispose stuff as needed
+            }
+
+            disposed = true;
+        }
+
+        #endregion
 
         /// <summary>
         /// Handle Exception

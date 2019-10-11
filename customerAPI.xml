@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <doc>
     <assembly>
-        <name>customerAPI</name>
+        <name>CustomerAPI</name>
     </assembly>
     <members>
         <member name="T:customerAPI.Controllers.HomeController">
@@ -114,6 +114,11 @@
             ASP.NET Core Global Exception Handler
             </summary>
         </member>
+        <member name="F:customerAPI.GlobalExceptionFilter._logger">
+            <summary>
+            Field: ILogger
+            </summary>
+        </member>
         <member name="M:customerAPI.GlobalExceptionFilter.#ctor(Microsoft.Extensions.Logging.ILoggerFactory)">
             <summary>
             CTOR
@@ -122,8 +127,14 @@
         </member>
         <member name="M:customerAPI.GlobalExceptionFilter.Dispose">
             <summary>
-            Dispose
+            Public implementation of Dispose pattern callable by consumers.
             </summary>
+        </member>
+        <member name="M:customerAPI.GlobalExceptionFilter.Dispose(System.Boolean)">
+            <summary>
+            Protected implementation of Dispose pattern.
+            </summary>
+            <param name="disposing">bool</param>
         </member>
         <member name="M:customerAPI.GlobalExceptionFilter.OnException(Microsoft.AspNetCore.Mvc.Filters.ExceptionContext)">
             <summary>

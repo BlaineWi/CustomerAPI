@@ -11,7 +11,7 @@ namespace customerAPI
     public class CustomerHealthCheck : IHealthCheck
     {
 
-        private ILogger<CustomerHealthCheck> _logger = null;
+        private readonly ILogger<CustomerHealthCheck> _logger = null;
 
         /// <summary>
         /// CTOR, add injected stuff if needed
@@ -27,7 +27,7 @@ namespace customerAPI
         /// <param name="context">HealthCheckContext</param>
         /// <param name="cancellationToken">CancellationToken</param>
         /// <returns>HealthCheckResult</returns>
-        public Task<HealthCheckResult> CheckHealthAsync(HealthCheckContext context, CancellationToken cancellationToken = default(CancellationToken))
+        public Task<HealthCheckResult> CheckHealthAsync(HealthCheckContext context, CancellationToken cancellationToken = default)
         {
             int ct = DataAccess.DataFactory.PersonList.Count;
             if (ct > 0)

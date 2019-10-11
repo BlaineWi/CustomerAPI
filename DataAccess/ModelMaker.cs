@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using BlitzkriegSoftware.SecureRandomLibrary;
 
 namespace customerAPI.DataAccess
 {
@@ -10,7 +8,7 @@ namespace customerAPI.DataAccess
     /// </summary>
     public static class ModelMaker
     {
-        private static Random Dice = new Random();
+        private static readonly SecureRandom Dice = new SecureRandom();
 
         /// <summary>
         /// Make a Person Full of Data

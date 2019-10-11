@@ -2,8 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
@@ -14,9 +12,9 @@ namespace customerAPI.Controllers
     /// </summary>
     [Produces("application/json")]
     [Route("Person")]
-    public class PersonController : Controller
+    public class PersonController : ControllerBase
     {
-        private ILogger<PersonController> _logger = null;
+        private readonly ILogger<PersonController> _logger = null;
 
         /// <summary>
         /// CTOR

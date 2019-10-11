@@ -44,7 +44,7 @@ namespace customerAPI
         /// This method gets called by the runtime. Use this method to add services to the container.
         /// </summary>
         /// <param name="services">IServiceCollection</param>
-        public void ConfigureServices(IServiceCollection services)
+        public static void ConfigureServices(IServiceCollection services)
         {
             services.AddLogging(loggingBuilder => {
                 // This line must be 1st
@@ -99,7 +99,7 @@ namespace customerAPI
         /// </summary>
         /// <param name="app">IApplicationBuilder</param>
         /// <param name="env">IHostingEnvironment</param>
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public static void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
             if (env.IsDevelopment())
             {
