@@ -1,0 +1,436 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>CustomerAPI3</name>
+    </assembly>
+    <members>
+        <member name="T:CustomerAPI3.Controllers.CommonController">
+            <summary>
+            Shared Operations for All Web Services
+            </summary>
+        </member>
+        <member name="M:CustomerAPI3.Controllers.CommonController.#ctor(Microsoft.Extensions.Logging.ILogger{CustomerAPI3.Controllers.CommonController})">
+            <summary>
+            CTOR
+            </summary>
+            <param name="logger">ILogger</param>
+        </member>
+        <member name="M:CustomerAPI3.Controllers.CommonController.VersionGet">
+            <summary>
+            Get Semantic Version
+            </summary>
+            <returns>String of Semantic Version</returns>
+        </member>
+        <member name="M:CustomerAPI3.Controllers.CommonController.CheckHealth">
+            <summary>
+            Health Check Endpoint
+            </summary>
+            <returns>HealthCheckResult</returns>
+        </member>
+        <member name="T:CustomerAPI3.Controllers.CustomerController">
+            <summary>
+            Customer Operations
+            </summary>
+        </member>
+        <member name="M:CustomerAPI3.Controllers.CustomerController.#ctor(Microsoft.Extensions.Logging.ILogger{CustomerAPI3.Controllers.CustomerController})">
+            <summary>
+            CTOR
+            </summary>
+            <param name="logger">ILogger</param>
+        </member>
+        <member name="M:CustomerAPI3.Controllers.CustomerController.Get(System.String)">
+            <summary>
+            Get by Id
+            </summary>
+            <param name="id">Id to get</param>
+            <returns>Person or null</returns>
+            <response code="200">Person</response>
+            <response code="400">Bad ID value</response>
+            <response code="404">ID Not Found</response>
+        </member>
+        <member name="M:CustomerAPI3.Controllers.CustomerController.Search(System.String)">
+            <summary>
+            Search for people
+            </summary>
+            <param name="text">Search Text</param>
+            <returns>Search results</returns>
+            <response code="200">Success</response>
+            <response code="400">Missing Search Text</response>
+        </member>
+        <member name="M:CustomerAPI3.Controllers.CustomerController.Delete(System.String)">
+            <summary>
+            Delete a person
+            </summary>
+            <param name="id">Id to delete</param>
+            <response code="200">(ok)</response>
+            <response code="204">(deleted)</response>
+            <response code="404">ID Not Found</response>
+        </member>
+        <member name="M:CustomerAPI3.Controllers.CustomerController.AddUpdate(CustomerAPI3.Models.Customer)">
+            <summary>
+            Add / Update a Person Record. 
+            If adding use the empty string or empty GUID as <c>_id</c>
+            </summary>
+            <param name="model">Person</param>
+            <returns>Person</returns>
+            <response code="200">Person</response>
+            <response code="201">Person</response>
+            <response code="404">Not Found</response>
+        </member>
+        <member name="T:CustomerAPI3.DataAccess.DataFactory">
+            <summary>
+            Data Factory
+            </summary>
+        </member>
+        <member name="P:CustomerAPI3.DataAccess.DataFactory.PersonList">
+            <summary>
+            Person List
+            </summary>
+        </member>
+        <member name="P:CustomerAPI3.DataAccess.DataFactory.People">
+            <summary>
+            People
+            </summary>
+        </member>
+        <member name="T:CustomerAPI3.DataAccess.ModelMaker">
+            <summary>
+            Model Maker
+            </summary>
+        </member>
+        <member name="M:CustomerAPI3.DataAccess.ModelMaker.PersonMake">
+            <summary>
+            Make a Person Full of Data
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:CustomerAPI3.Libs.AssembyInfoHelper">
+            <summary>
+            Helper: Assembly Info
+            <para>Translates the <c>CustomAttributeData</c> to a usable string value</para>
+            </summary>
+        </member>
+        <member name="M:CustomerAPI3.Libs.AssembyInfoHelper.TryParse(System.Reflection.CustomAttributeData,System.String@)">
+            <summary>
+            Try Parse a <c>System.Reflection.CustomAttributeData</c> into a string
+            </summary>
+            <param name="attribute">(this)</param>
+            <param name="s">Strng to parse into</param>
+            <returns>True if success</returns>
+        </member>
+        <member name="T:CustomerAPI3.Libs.GlobalExceptionFilter">
+            <summary>
+            Global Exception Filter
+            <para>See: www.talkingdotnet.com/global-exception-handling-in-aspnet-core-webapi/</para>
+            </summary>
+        </member>
+        <member name="F:CustomerAPI3.Libs.GlobalExceptionFilter._logger">
+            <summary>
+            Field: ILogger
+            </summary>
+        </member>
+        <member name="M:CustomerAPI3.Libs.GlobalExceptionFilter.#ctor(Microsoft.Extensions.Logging.ILoggerFactory)">
+            <summary>
+            CTOR
+            </summary>
+            <param name="logger">Logger to inject</param>
+        </member>
+        <member name="M:CustomerAPI3.Libs.GlobalExceptionFilter.Dispose">
+            <summary>
+            Public implementation of Dispose pattern callable by consumers.
+            </summary>
+        </member>
+        <member name="M:CustomerAPI3.Libs.GlobalExceptionFilter.Dispose(System.Boolean)">
+            <summary>
+            Protected implementation of Dispose pattern.
+            </summary>
+            <param name="disposing">bool</param>
+        </member>
+        <member name="M:CustomerAPI3.Libs.GlobalExceptionFilter.OnException(Microsoft.AspNetCore.Mvc.Filters.ExceptionContext)">
+            <summary>
+            Handle Exception
+            </summary>
+            <param name="context"></param>
+        </member>
+        <member name="T:CustomerAPI3.Libs.TypeSwitch">
+            <summary>
+            Provides for switching on type (handy for error handling)
+            <para>From: http://stackoverflow.com/questions/11277036/typeswitching-in-c-sharp</para>
+            </summary>
+        </member>
+        <member name="T:CustomerAPI3.Libs.TypeSwitch.CaseInfo">
+            <summary>
+            Case Info
+            </summary>
+        </member>
+        <member name="P:CustomerAPI3.Libs.TypeSwitch.CaseInfo.IsDefault">
+            <summary>
+            Is Default Case
+            </summary>
+        </member>
+        <member name="P:CustomerAPI3.Libs.TypeSwitch.CaseInfo.Target">
+            <summary>
+            Type to switch on
+            </summary>
+        </member>
+        <member name="P:CustomerAPI3.Libs.TypeSwitch.CaseInfo.Action">
+            <summary>
+            Thing to do if this case selected
+            </summary>
+        </member>
+        <member name="M:CustomerAPI3.Libs.TypeSwitch.Do(System.Object,CustomerAPI3.Libs.TypeSwitch.CaseInfo[])">
+            <summary>
+            Do the action
+            </summary>
+            <param name="source">Source of the action</param>
+            <param name="cases">Cases</param>
+        </member>
+        <member name="M:CustomerAPI3.Libs.TypeSwitch.Case``1(System.Action)">
+            <summary>
+            Case Block
+            </summary>
+            <typeparam name="T">Type</typeparam>
+            <param name="action">Action</param>
+            <returns>Case Information</returns>
+        </member>
+        <member name="M:CustomerAPI3.Libs.TypeSwitch.Case``1(System.Action{``0})">
+            <summary>
+            Case Block (Generic)
+            </summary>
+            <typeparam name="T">Type</typeparam>
+            <param name="action">Action</param>
+            <returns>Case Information</returns>
+        </member>
+        <member name="M:CustomerAPI3.Libs.TypeSwitch.Default(System.Action)">
+            <summary>
+            Default Case Block
+            </summary>
+            <param name="action">Action</param>
+            <returns>Case Information</returns>
+        </member>
+        <member name="T:CustomerAPI3.Models.Address">
+            <summary>
+            Address
+            </summary>
+        </member>
+        <member name="P:CustomerAPI3.Models.Address.Address1">
+            <summary>
+            Primary Delivery Address
+            </summary>
+        </member>
+        <member name="P:CustomerAPI3.Models.Address.Address2">
+            <summary>
+            Appt #, etc/
+            </summary>
+        </member>
+        <member name="P:CustomerAPI3.Models.Address.City">
+            <summary>
+            City
+            </summary>
+        </member>
+        <member name="P:CustomerAPI3.Models.Address.State">
+            <summary>
+            State of Provence
+            </summary>
+        </member>
+        <member name="P:CustomerAPI3.Models.Address.Zip">
+            <summary>
+            Zip Code
+            </summary>
+        </member>
+        <member name="P:CustomerAPI3.Models.Address.Kind">
+            <summary>
+            Address Kind
+            </summary>
+        </member>
+        <member name="P:CustomerAPI3.Models.Address.IsEmpty">
+            <summary>
+            Test if the address is effectively empty
+            </summary>
+        </member>
+        <member name="T:CustomerAPI3.Models.AddressKind">
+            <summary>
+            Kind of Address
+            </summary>
+        </member>
+        <member name="F:CustomerAPI3.Models.AddressKind.Mailing">
+            <summary>
+            Mailing
+            </summary>
+        </member>
+        <member name="F:CustomerAPI3.Models.AddressKind.Billing">
+            <summary>
+            Billing
+            </summary>
+        </member>
+        <member name="F:CustomerAPI3.Models.AddressKind.Other">
+            <summary>
+            Other
+            </summary>    
+        </member>
+        <member name="T:CustomerAPI3.Models.BlitzAssemblyVersionMetadata">
+            <summary>
+            Custom Metadata For All Blitzkireg Software Micro-Service
+            </summary>
+        </member>
+        <member name="P:CustomerAPI3.Models.BlitzAssemblyVersionMetadata.Copyright">
+            <summary>
+            Copyright
+            </summary>
+        </member>
+        <member name="P:CustomerAPI3.Models.BlitzAssemblyVersionMetadata.Company">
+            <summary>
+            Company
+            </summary>
+        </member>
+        <member name="P:CustomerAPI3.Models.BlitzAssemblyVersionMetadata.Description">
+            <summary>
+            Description
+            </summary>
+        </member>
+        <member name="P:CustomerAPI3.Models.BlitzAssemblyVersionMetadata.SemanticVersion">
+            <summary>
+            Semantic Version <para>See: semver.org</para>
+            </summary>
+        </member>
+        <member name="P:CustomerAPI3.Models.BlitzAssemblyVersionMetadata.MajorVersion">
+            <summary>
+            Major version as it occurs on the path
+            </summary>
+        </member>
+        <member name="P:CustomerAPI3.Models.BlitzAssemblyVersionMetadata.Product">
+            <summary>
+            Product
+            </summary>
+        </member>
+        <member name="M:CustomerAPI3.Models.BlitzAssemblyVersionMetadata.PropertySet(System.String,System.String)">
+            <summary>
+            Property Set
+            </summary>
+            <param name="name">(sic)</param>
+            <param name="value">(sic)</param>
+        </member>
+        <member name="T:CustomerAPI3.Models.Customer">
+            <summary>
+            Person
+            </summary>
+        </member>
+        <member name="P:CustomerAPI3.Models.Customer._id">
+            <summary>
+            PK of Person
+            <para>Mongo DB is super fussy about this name</para>
+            </summary>
+        </member>
+        <member name="P:CustomerAPI3.Models.Customer.NameLast">
+            <summary>
+            Last Name
+            </summary>
+        </member>
+        <member name="P:CustomerAPI3.Models.Customer.NameFirst">
+            <summary>
+            First Name
+            </summary>
+        </member>
+        <member name="P:CustomerAPI3.Models.Customer.EMail">
+            <summary>
+            E-Mail
+            </summary>
+        </member>
+        <member name="P:CustomerAPI3.Models.Customer.Company">
+            <summary>
+            Company
+            </summary>
+        </member>
+        <member name="P:CustomerAPI3.Models.Customer.Birthday">
+            <summary>
+            Birthday
+            </summary>
+        </member>
+        <member name="P:CustomerAPI3.Models.Customer.Addresses">
+            <summary>
+            Address List
+            </summary>
+        </member>
+        <member name="P:CustomerAPI3.Models.Customer.Preference">
+            <summary>
+            Preferences
+            </summary>
+        </member>
+        <member name="T:CustomerAPI3.Models.ErrorPayload">
+            <summary>
+            Error Payload
+            </summary>
+        </member>
+        <member name="P:CustomerAPI3.Models.ErrorPayload.StatusCode">
+            <summary>
+            HTTP Status Code
+            </summary>
+        </member>
+        <member name="P:CustomerAPI3.Models.ErrorPayload.Message">
+            <summary>
+            Message
+            </summary>
+        </member>
+        <member name="P:CustomerAPI3.Models.ErrorPayload.StackTrace">
+            <summary>
+            Stack Trace
+            </summary>
+        </member>
+        <member name="P:CustomerAPI3.Models.ErrorPayload.Data">
+            <summary>
+            Additional Data
+            </summary>
+        </member>
+        <member name="T:CustomerAPI3.Program">
+            <summary>
+            Entry Point Host
+            </summary>
+        </member>
+        <member name="M:CustomerAPI3.Program.Main(System.String[])">
+            <summary>
+            Entry Point
+            </summary>
+            <param name="args">Command line arguments</param>
+        </member>
+        <member name="M:CustomerAPI3.Program.CreateHostBuilder(System.String[])">
+            <summary>
+            Host Builder
+            </summary>
+            <param name="args">Command line arguments</param>
+            <returns>IHostBuilder</returns>
+        </member>
+        <member name="P:CustomerAPI3.Program.ProgramMetadata">
+            <summary>
+            Semantic Version, etc from Assembly Metadata
+            </summary>
+        </member>
+        <member name="T:CustomerAPI3.Startup">
+            <summary>
+            Start Up Builder
+            </summary>
+        </member>
+        <member name="M:CustomerAPI3.Startup.#ctor(Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>
+            CTOR
+            </summary>
+            <param name="configuration">IConfiguration</param>
+        </member>
+        <member name="P:CustomerAPI3.Startup.Configuration">
+            <summary>
+            Configuration Property
+            </summary>
+        </member>
+        <member name="M:CustomerAPI3.Startup.ConfigureServices(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            This method gets called by the runtime. Use this method to add services to the container.
+            </summary>
+            <param name="services">IServiceCollection</param>
+        </member>
+        <member name="M:CustomerAPI3.Startup.Configure(Microsoft.AspNetCore.Builder.IApplicationBuilder,Microsoft.AspNetCore.Hosting.IWebHostEnvironment)">
+            <summary>
+            Configure
+            </summary>
+            <param name="app">IApplicationBuilder</param>
+            <param name="env">IWebHostEnvironment</param>
+        </member>
+    </members>
+</doc>

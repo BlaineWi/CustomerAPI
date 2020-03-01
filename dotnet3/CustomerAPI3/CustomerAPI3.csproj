@@ -1,0 +1,48 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <Copyright>Copyright © 2020 Blitzkrieg Software</Copyright>
+    <Company>Blitzkrieg Software</Company>
+    <Description>Customer API .NET Core 3.1</Description>
+    <InformationalVersion>3.1.2</InformationalVersion>
+    <FileVersion>3.1.2</FileVersion>
+    <PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
+    <PackageIcon>favicon_32x32_o7Z_icon.ico</PackageIcon>
+    <PackageIconUrl />
+    <RepositoryType>Git</RepositoryType>
+    <RepositoryUrl>https://github.com/blitzkriegsoftware/customerapi</RepositoryUrl>
+    <PackageTags>ASP.NET WebAPI</PackageTags>
+    <AssemblyVersion>3.1.2</AssemblyVersion>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DocumentationFile>C:\code\blitz\CustomerAPI\dotnet3\CustomerAPI3\CustomerAPI3.xml</DocumentationFile>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="..\.editorconfig" Link=".editorconfig" />
+    <None Include="..\favicon_32x32_o7Z_icon.ico">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
+    <None Include="..\LICENSE.txt">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="BlitzkriegSoftware.SecureRandomLibrary" Version="1.0.2" />
+    <PackageReference Include="Faker.NETCore" Version="1.0.2" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.1" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="5.0.0" />
+    <PackageReference Include="Swashbuckle.AspNetCore.Swagger" Version="5.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="assets\" />
+  </ItemGroup>
+
+
+</Project>
