@@ -42,7 +42,7 @@ namespace CustomerAPI3.Libs
         /// </summary>
         public void Dispose()
         {
-            Dispose(true);
+            this.Dispose(true);
             GC.SuppressFinalize(this);
         }
 
@@ -52,7 +52,7 @@ namespace CustomerAPI3.Libs
         /// <param name="disposing">bool</param>
         protected virtual void Dispose(bool disposing)
         {
-            if (disposed)
+            if (this.disposed)
                 return;
 
             if (disposing)
@@ -60,7 +60,7 @@ namespace CustomerAPI3.Libs
                 // dispose stuff as needed
             }
 
-            disposed = true;
+            this.disposed = true;
         }
 
         #endregion
@@ -71,9 +71,9 @@ namespace CustomerAPI3.Libs
         /// <param name="context"></param>
         public void OnException(ExceptionContext context)
         {
-            Dictionary<string, string> data = new Dictionary<string, string>();
+            var data = new Dictionary<string, string>();
             HttpStatusCode statusCode = HttpStatusCode.InternalServerError;
-            String message = String.Empty;
+            var message = String.Empty;
 
             var ex = context.Exception;
 

@@ -21,6 +21,12 @@
             </summary>
             <returns>String of Semantic Version</returns>
         </member>
+        <member name="M:CustomerAPI3.Controllers.CommonController.VersionInfo">
+            <summary>
+            Return Program Metadata and Version Info
+            </summary>
+            <returns>Program Metadata and Version Info</returns>
+        </member>
         <member name="M:CustomerAPI3.Controllers.CommonController.CheckHealth">
             <summary>
             Health Check Endpoint
@@ -290,6 +296,11 @@
         <member name="P:CustomerAPI3.Models.BlitzAssemblyVersionMetadata.SemanticVersion">
             <summary>
             Semantic Version <para>See: semver.org</para>
+            </summary>
+        </member>
+        <member name="P:CustomerAPI3.Models.BlitzAssemblyVersionMetadata.FileVersion">
+            <summary>
+            File Version
             </summary>
         </member>
         <member name="P:CustomerAPI3.Models.BlitzAssemblyVersionMetadata.MajorVersion">

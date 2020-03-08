@@ -8,7 +8,7 @@ namespace CustomerAPI3.DataAccess
     /// </summary>
     public static class DataFactory
     {
-        private const int PeopleCount = 100;
+        private const int PeopleCount = 50;
 
         private static List<Models.Customer> _list = null;
 

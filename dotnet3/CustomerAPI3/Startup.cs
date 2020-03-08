@@ -24,7 +24,7 @@ namespace CustomerAPI3
         /// <param name="configuration">IConfiguration</param>
         public Startup(IConfiguration configuration)
         {
-            Configuration = configuration;
+            this.Configuration = configuration;
         }
 
         /// <summary>
