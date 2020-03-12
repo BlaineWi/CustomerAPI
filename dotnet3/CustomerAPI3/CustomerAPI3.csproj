@@ -14,6 +14,7 @@
     <RepositoryUrl>https://github.com/blitzkriegsoftware/customerapi</RepositoryUrl>
     <PackageTags>ASP.NET WebAPI</PackageTags>
     <AssemblyVersion>3.2.2</AssemblyVersion>
+    <AssemblyName>CustomerAPI3</AssemblyName>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
