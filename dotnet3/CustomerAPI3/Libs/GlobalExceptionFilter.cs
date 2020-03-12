@@ -17,7 +17,7 @@ namespace CustomerAPI3.Libs
         /// <summary>
         /// Field: ILogger
         /// </summary>
-        protected readonly ILogger _logger = null;
+        private readonly ILogger _logger = null;
 
         /// <summary>
         /// CTOR
@@ -75,6 +75,11 @@ namespace CustomerAPI3.Libs
             HttpStatusCode statusCode = HttpStatusCode.InternalServerError;
             var message = String.Empty;
 
+            if(context == null)
+            {
+                return;
+            }
+
             var ex = context.Exception;
 
             TypeSwitch.Do(ex,
@@ -94,7 +99,12 @@ namespace CustomerAPI3.Libs
                 Message = ex.Message,
                 StatusCode = (int)statusCode
             };
-            response.WriteAsync(JsonConvert.SerializeObject(err));
+
+            var json = JsonConvert.SerializeObject(err);
+            
+            this._logger.LogError(ex, json);
+            
+            response.WriteAsync(json);
         }
     }
 }

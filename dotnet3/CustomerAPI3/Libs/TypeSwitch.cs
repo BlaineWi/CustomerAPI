@@ -34,6 +34,8 @@ namespace CustomerAPI3.Libs
         /// <param name="cases">Cases</param>
         public static void Do(object source, params CaseInfo[] cases)
         {
+            if (source == null) return;
+
             var type = source.GetType();
             foreach (var entry in cases)
             {

@@ -43,8 +43,8 @@ namespace CustomerAPI3.Models
         {
             get
             {
-                if (_addresses == null) _addresses = new List<Address>();
-                return _addresses;
+                if (this._addresses == null) this._addresses = new List<Address>();
+                return this._addresses;
             }
         }
 
@@ -57,8 +57,8 @@ namespace CustomerAPI3.Models
         {
             get
             {
-                if (_preference == null) _preference = new Dictionary<string, string>();
-                return _preference;
+                if (this._preference == null) this._preference = new Dictionary<string, string>();
+                return this._preference;
             }
         }
     }

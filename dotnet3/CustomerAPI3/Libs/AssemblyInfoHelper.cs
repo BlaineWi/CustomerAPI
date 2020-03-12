@@ -15,6 +15,8 @@
         public static bool TryParse(this System.Reflection.CustomAttributeData attribute, out string s)
         {
             var flag = false;
+            s = string.Empty;
+            if (attribute == null) return flag;
             s = attribute.ToString();
             var i = s.IndexOf('"');
             if (i >= 0) { s = s.Substring(i + 1); flag = true; }

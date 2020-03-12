@@ -24,7 +24,7 @@ namespace CustomerAPI3.Controllers
         /// <param name="logger">ILogger</param>
         public CustomerController(ILogger<CustomerController> logger)
         {
-            _logger = logger;
+            this._logger = logger;
         }
 
 
@@ -42,7 +42,7 @@ namespace CustomerAPI3.Controllers
         [HttpGet("{id}")]
         public Models.Customer Get(string id)
         {
-            _logger.LogInformation("Get: {0}", id);
+            this._logger.LogInformation("Get: {0}", id);
 
             if (string.IsNullOrWhiteSpace(id))
             {
@@ -68,7 +68,7 @@ namespace CustomerAPI3.Controllers
         [HttpGet("Search/{text}")]
         public IEnumerable<Models.Customer> Search(string text)
         {
-            _logger.LogInformation("Search: {0}", text);
+            this._logger.LogInformation("Search: {0}", text);
 
             if (string.IsNullOrWhiteSpace(text))
             {
@@ -92,7 +92,7 @@ namespace CustomerAPI3.Controllers
         [HttpDelete("{id}")]
         public void Delete(string id)
         {
-            _logger.LogInformation("Delete: {0}", id);
+            this._logger.LogInformation("Delete: {0}", id);
 
             var model = DataAccess.DataFactory.People.Where(p => p._id == id).FirstOrDefault();
             if (model == null)
@@ -100,7 +100,7 @@ namespace CustomerAPI3.Controllers
                 throw new KeyNotFoundException("No Key Found Matching: " + id);
             }
             DataAccess.DataFactory.PersonList.Remove(model);
-            Response.StatusCode = (int)HttpStatusCode.NoContent;
+            this.Response.StatusCode = (int)HttpStatusCode.NoContent;
         }
 
         /// <summary>
@@ -118,7 +118,12 @@ namespace CustomerAPI3.Controllers
         [ProducesResponseType(typeof(void), 404)]
         public Models.Customer AddUpdate(Models.Customer model)
         {
-            _logger.LogInformation("Add/Update: {0}", model._id);
+            if(model == null)
+            {
+                throw new ArgumentNullException(nameof(model));
+            }
+
+            this._logger.LogInformation("Add/Update: {0}", model._id);
 
             var model2 = DataAccess.DataFactory.People.Where(p => p._id == model._id).FirstOrDefault();
 
@@ -126,7 +131,7 @@ namespace CustomerAPI3.Controllers
             {
                 if ((string.IsNullOrWhiteSpace(model._id)) || (model._id == Guid.Empty.ToString())) model._id = Guid.NewGuid().ToString();
                 DataAccess.DataFactory.PersonList.Add(model);
-                Response.StatusCode = (int)HttpStatusCode.Created;
+                this.Response.StatusCode = (int)HttpStatusCode.Created;
             }
             else
             {
@@ -136,7 +141,6 @@ namespace CustomerAPI3.Controllers
 
             return model;
         }
-
-
+        
     }
 }
