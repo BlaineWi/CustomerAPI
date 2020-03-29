@@ -11,7 +11,7 @@ namespace CustomerAPI3.Controllers
     /// Customer Operations
     /// </summary>
     [ApiController]
-    [Route("v3/Person")]
+    [Route("/v3/Person")]
     [Produces("application/json")]
     [ApiExplorerSettings(GroupName ="v3")]
     public class CustomerController : ControllerBase
@@ -27,6 +27,18 @@ namespace CustomerAPI3.Controllers
             this._logger = logger;
         }
 
+        /// <summary>
+        /// Id List (get)
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet("IdList")]
+        [ProducesResponseType(typeof(IEnumerable<string>), 200)]
+        public IEnumerable<string> IdList()
+        {
+            this._logger.LogInformation("IdList()");
+            var model = DataAccess.DataFactory.People.Select(m => m._id).ToList();
+            return model;
+        }
 
         /// <summary>
         /// Get by Id
@@ -100,7 +112,7 @@ namespace CustomerAPI3.Controllers
                 throw new KeyNotFoundException("No Key Found Matching: " + id);
             }
             DataAccess.DataFactory.PersonList.Remove(model);
-            this.Response.StatusCode = (int)HttpStatusCode.NoContent;
+            if (this.Response != null) this.Response.StatusCode = (int) HttpStatusCode.NoContent;
         }
 
         /// <summary>
@@ -131,7 +143,7 @@ namespace CustomerAPI3.Controllers
             {
                 if ((string.IsNullOrWhiteSpace(model._id)) || (model._id == Guid.Empty.ToString())) model._id = Guid.NewGuid().ToString();
                 DataAccess.DataFactory.PersonList.Add(model);
-                this.Response.StatusCode = (int)HttpStatusCode.Created;
+                if(this.Response != null) this.Response.StatusCode = (int)HttpStatusCode.Created;
             }
             else
             {

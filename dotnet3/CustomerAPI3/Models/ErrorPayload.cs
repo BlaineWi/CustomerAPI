@@ -22,10 +22,22 @@ namespace CustomerAPI3.Models
         /// </summary>
         public string StackTrace { get; set; }
 
+        private Dictionary<string, string> _data;
+
         /// <summary>
         /// Additional Data
         /// </summary>
-        public Dictionary<string, string> Data { get; set; }
+        public Dictionary<string, string> Data
+        {
+            get
+            {
+                if (this._data == null)
+                {
+                    this._data = new Dictionary<string, string>();
+                }
+                return this._data;
+            }
+        }
 
     }
 }

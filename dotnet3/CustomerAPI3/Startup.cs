@@ -1,4 +1,5 @@
 using System;
+using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Reflection;
 using CustomerAPI3.Libs;
@@ -16,6 +17,7 @@ namespace CustomerAPI3
     /// <summary>
     /// Start Up Builder
     /// </summary>
+    [ExcludeFromCodeCoverage]
     public class Startup
     {
         /// <summary>
@@ -92,7 +94,25 @@ namespace CustomerAPI3
                         Version = Program.ProgramMetadata.SemanticVersion
                     });
 
-                swag.SwaggerDoc(CommonVersion, new OpenApiInfo { Title = "Common Operations", Version = CommonVersion });
+                swag.SwaggerDoc(CommonVersion,
+                    new OpenApiInfo()
+                    {
+                        Contact = new OpenApiContact()
+                        {
+                            Email = "spookdejur@hotmail.com",
+                            Name = "Stuart Williams",
+                            Url = new Uri("https://github.com/blitzkriegsoftware/customerapi")
+                        },
+                        Description = "Universal Common APIs",
+                        License = new OpenApiLicense()
+                        {
+                            Name = "MIT",
+                            Url = new Uri("https://opensource.org/licenses/MIT")
+                        },
+                        Title = CommonVersion,
+                        Version = CommonVersion
+                    }
+                );
 
                 string xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
                 string xmlPath = System.IO.Path.Combine(AppContext.BaseDirectory, xmlFile);
@@ -117,8 +137,6 @@ namespace CustomerAPI3
             }
 
             app.UseHttpsRedirection();
-
-            app.UseStaticFiles();
 
             app.UseStaticFiles(new StaticFileOptions
             {
@@ -152,6 +170,8 @@ namespace CustomerAPI3
                 ui.SwaggerEndpoint($"/swagger/{CommonVersion}/swagger.json", $"Common {Program.ProgramMetadata.MajorVersion}");
 
                 ui.ShowExtensions();
+                ui.DisplayRequestDuration();
+                ui.DocExpansion(Swashbuckle.AspNetCore.SwaggerUI.DocExpansion.List);
             });
 
             app.UseRouting();

@@ -30,10 +30,7 @@ namespace CustomerAPI3.DataAccess
                 }
                 return _list;
             }
-            set
-            {
-                _list = value;
-            }
+            
         }
 
         /// <summary>

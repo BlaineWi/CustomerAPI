@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Net;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc.Filters;
@@ -12,6 +13,7 @@ namespace CustomerAPI3.Libs
     /// Global Exception Filter
     /// <para>See: www.talkingdotnet.com/global-exception-handling-in-aspnet-core-webapi/</para>
     /// </summary>
+    [ExcludeFromCodeCoverage]
     public class GlobalExceptionFilter : IExceptionFilter, IDisposable
     {
         /// <summary>
@@ -94,11 +96,12 @@ namespace CustomerAPI3.Libs
             response.ContentType = "application/json";
             var err = new Models.ErrorPayload()
             {
-                Data = data,
                 StackTrace = ex.StackTrace,
                 Message = ex.Message,
                 StatusCode = (int)statusCode
             };
+
+            foreach (var d in data) err.Data.Add(d.Key, d.Value);
 
             var json = JsonConvert.SerializeObject(err);
             

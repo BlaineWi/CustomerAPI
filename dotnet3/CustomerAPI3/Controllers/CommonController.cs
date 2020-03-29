@@ -32,6 +32,7 @@ namespace CustomerAPI3.Controllers
         /// <returns>String of Semantic Version</returns>
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK)]
+        [Produces("text/plain")]
         public IActionResult VersionGet()
         {
             this._logger.LogInformation($"Semantic Version: {Program.ProgramMetadata.SemanticVersion}");

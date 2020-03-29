@@ -1,12 +1,15 @@
 using CustomerAPI3.Libs;
+
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
+using System.Diagnostics.CodeAnalysis;
 
 namespace CustomerAPI3
 {
     /// <summary>
     /// Entry Point Host
     /// </summary>
+    [ExcludeFromCodeCoverage]
     public static class Program
     {
         /// <summary>

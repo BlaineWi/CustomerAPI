@@ -44,6 +44,12 @@
             </summary>
             <param name="logger">ILogger</param>
         </member>
+        <member name="M:CustomerAPI3.Controllers.CustomerController.IdList">
+            <summary>
+            Id List (get)
+            </summary>
+            <returns></returns>
+        </member>
         <member name="M:CustomerAPI3.Controllers.CustomerController.Get(System.String)">
             <summary>
             Get by Id

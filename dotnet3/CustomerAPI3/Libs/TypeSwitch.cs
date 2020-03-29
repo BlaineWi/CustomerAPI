@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
 
 namespace CustomerAPI3.Libs
 {
@@ -6,6 +7,7 @@ namespace CustomerAPI3.Libs
     /// Provides for switching on type (handy for error handling)
     /// <para>From: http://stackoverflow.com/questions/11277036/typeswitching-in-c-sharp</para>
     /// </summary>
+    [ExcludeFromCodeCoverage]
     public static class TypeSwitch
     {
         /// <summary>
