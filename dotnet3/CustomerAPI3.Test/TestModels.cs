@@ -1,10 +1,8 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
-using System.Text;
 using BlitzkriegSoftware.MsTest;
 using System.Diagnostics.CodeAnalysis;
-using CustomerAPI3.Models;
 
 namespace CustomerAPI3.Test
 {

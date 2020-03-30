@@ -21,6 +21,8 @@ namespace CustomerAPI3.Test
         #endregion
 
         [TestMethod]
+        [TestCategory("UnitTest")]
+        [TestCategory("Functional")]
         public void TestLibs_AssembyInfoHelper()
         {
             var assembly = typeof(Program).Assembly;
