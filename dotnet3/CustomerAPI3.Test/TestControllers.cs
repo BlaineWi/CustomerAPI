@@ -48,8 +48,8 @@ namespace CustomerAPI3.Test
             {
                 if (this._ids == null)
                 {
-                    var logger = new BlitzkriegSoftware.MsTest.MsTestLogger<Controllers.CustomerController>(TestControllers.Context);
-                    var ctlr = new Controllers.CustomerController(logger);
+                    var logger = new BlitzkriegSoftware.MsTest.MsTestLogger<Controllers.CustomerController3>(TestControllers.Context);
+                    var ctlr = new Controllers.CustomerController3(logger);
                     this._ids = new List<string>();
                     this._ids.AddRange(ctlr.IdList());
                 }
@@ -74,8 +74,8 @@ namespace CustomerAPI3.Test
         public Models.Customer RandomCustomer()
         {
             var id = this.RandomId();
-            var logger = new BlitzkriegSoftware.MsTest.MsTestLogger<Controllers.CustomerController>(TestControllers.Context);
-            var ctlr = new Controllers.CustomerController(logger);
+            var logger = new BlitzkriegSoftware.MsTest.MsTestLogger<Controllers.CustomerController3>(TestControllers.Context);
+            var ctlr = new Controllers.CustomerController3(logger);
             var entity = ctlr.Get(id);
             return entity;
         }
@@ -137,8 +137,8 @@ namespace CustomerAPI3.Test
         [ExpectedException(typeof(System.ArgumentException))]
         public void Controller_Customer_Get_Null()
         {
-            var logger = new BlitzkriegSoftware.MsTest.MsTestLogger<Controllers.CustomerController>(TestControllers.Context);
-            var ctlr = new Controllers.CustomerController(logger);
+            var logger = new BlitzkriegSoftware.MsTest.MsTestLogger<Controllers.CustomerController3>(TestControllers.Context);
+            var ctlr = new Controllers.CustomerController3(logger);
             _ = ctlr.Get(null);
         }
 
@@ -148,8 +148,8 @@ namespace CustomerAPI3.Test
         [ExpectedException(typeof(KeyNotFoundException))]
         public void Controller_Customer_Get_NotFound()
         {
-            var logger = new BlitzkriegSoftware.MsTest.MsTestLogger<Controllers.CustomerController>(TestControllers.Context);
-            var ctlr = new Controllers.CustomerController(logger);
+            var logger = new BlitzkriegSoftware.MsTest.MsTestLogger<Controllers.CustomerController3>(TestControllers.Context);
+            var ctlr = new Controllers.CustomerController3(logger);
             var id = "ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ";
             _ = ctlr.Get(id);
         }
@@ -159,8 +159,8 @@ namespace CustomerAPI3.Test
         [TestCategory("Controller")]
         public void Controller_Customer_AddUpdate_Existing()
         {
-            var logger = new BlitzkriegSoftware.MsTest.MsTestLogger<Controllers.CustomerController>(TestControllers.Context);
-            var ctlr = new Controllers.CustomerController(logger);
+            var logger = new BlitzkriegSoftware.MsTest.MsTestLogger<Controllers.CustomerController3>(TestControllers.Context);
+            var ctlr = new Controllers.CustomerController3(logger);
             Models.Customer entity = this.RandomCustomer();
             var result = ctlr.AddUpdate(entity);
             Assert.IsNotNull(result);
@@ -171,8 +171,8 @@ namespace CustomerAPI3.Test
         [TestCategory("Controller")]
         public void Controller_Customer_AddUpdate_New()
         {
-            var logger = new BlitzkriegSoftware.MsTest.MsTestLogger<Controllers.CustomerController>(TestControllers.Context);
-            var ctlr = new Controllers.CustomerController(logger);
+            var logger = new BlitzkriegSoftware.MsTest.MsTestLogger<Controllers.CustomerController3>(TestControllers.Context);
+            var ctlr = new Controllers.CustomerController3(logger);
             Models.Customer entity = this.RandomCustomer();
             entity._id = null;
             entity.NameLast = "Test";
@@ -187,8 +187,8 @@ namespace CustomerAPI3.Test
         [ExpectedException(typeof(System.ArgumentNullException))]
         public void Controller_Customer_AddUpdate_Bad()
         {
-            var logger = new BlitzkriegSoftware.MsTest.MsTestLogger<Controllers.CustomerController>(TestControllers.Context);
-            var ctlr = new Controllers.CustomerController(logger);
+            var logger = new BlitzkriegSoftware.MsTest.MsTestLogger<Controllers.CustomerController3>(TestControllers.Context);
+            var ctlr = new Controllers.CustomerController3(logger);
             Models.Customer entity = null;
             var result = ctlr.AddUpdate(entity);
             Assert.IsNotNull(result);
@@ -199,8 +199,8 @@ namespace CustomerAPI3.Test
         [TestCategory("Controller")]
         public void Controller_Customer_Delete_Ok()
         {
-            var logger = new BlitzkriegSoftware.MsTest.MsTestLogger<Controllers.CustomerController>(TestControllers.Context);
-            var ctlr = new Controllers.CustomerController(logger);
+            var logger = new BlitzkriegSoftware.MsTest.MsTestLogger<Controllers.CustomerController3>(TestControllers.Context);
+            var ctlr = new Controllers.CustomerController3(logger);
             var id = this.RandomId();
             this.Ids.Remove(id);
             ctlr.Delete(id);
@@ -212,8 +212,8 @@ namespace CustomerAPI3.Test
         [ExpectedException(typeof(KeyNotFoundException))]
         public void Controller_Customer_Delete_Bad()
         {
-            var logger = new BlitzkriegSoftware.MsTest.MsTestLogger<Controllers.CustomerController>(TestControllers.Context);
-            var ctlr = new Controllers.CustomerController(logger);
+            var logger = new BlitzkriegSoftware.MsTest.MsTestLogger<Controllers.CustomerController3>(TestControllers.Context);
+            var ctlr = new Controllers.CustomerController3(logger);
             ctlr.Delete(null);
         }
 
@@ -222,8 +222,8 @@ namespace CustomerAPI3.Test
         [TestCategory("Controller")]
         public void Controller_Customer_Search()
         {
-            var logger = new BlitzkriegSoftware.MsTest.MsTestLogger<Controllers.CustomerController>(TestControllers.Context);
-            var ctlr = new Controllers.CustomerController(logger);
+            var logger = new BlitzkriegSoftware.MsTest.MsTestLogger<Controllers.CustomerController3>(TestControllers.Context);
+            var ctlr = new Controllers.CustomerController3(logger);
             var entity = this.RandomCustomer();
             var text = entity.NameLast.Substring(0,2);
             var result = ctlr.Search(text);
@@ -237,8 +237,8 @@ namespace CustomerAPI3.Test
         [ExpectedException(typeof(ArgumentException))]
         public void Controller_Customer_Search_Bad()
         {
-            var logger = new BlitzkriegSoftware.MsTest.MsTestLogger<Controllers.CustomerController>(TestControllers.Context);
-            var ctlr = new Controllers.CustomerController(logger);
+            var logger = new BlitzkriegSoftware.MsTest.MsTestLogger<Controllers.CustomerController3>(TestControllers.Context);
+            var ctlr = new Controllers.CustomerController3(logger);
             _ = ctlr.Search(null);
         }
 

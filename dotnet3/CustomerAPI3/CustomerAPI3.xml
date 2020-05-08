@@ -69,7 +69,50 @@
             <response code="200">Success</response>
             <response code="400">Missing Search Text</response>
         </member>
-        <member name="M:CustomerAPI3.Controllers.CustomerController.Delete(System.String)">
+        <member name="M:CustomerAPI3.Controllers.CustomerController.First(System.String)">
+            <summary>
+            Return the 1st match of a search
+            </summary>
+            <param name="text">Search Text</param>
+            <returns>First Customer that Matches</returns>
+        </member>
+        <member name="T:CustomerAPI3.Controllers.CustomerController3">
+            <summary>
+            Customer Operations
+            </summary>
+        </member>
+        <member name="M:CustomerAPI3.Controllers.CustomerController3.#ctor(Microsoft.Extensions.Logging.ILogger{CustomerAPI3.Controllers.CustomerController3})">
+            <summary>
+            CTOR
+            </summary>
+            <param name="logger">ILogger</param>
+        </member>
+        <member name="M:CustomerAPI3.Controllers.CustomerController3.IdList">
+            <summary>
+            Id List (get)
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:CustomerAPI3.Controllers.CustomerController3.Get(System.String)">
+            <summary>
+            Get by Id
+            </summary>
+            <param name="id">Id to get</param>
+            <returns>Person or null</returns>
+            <response code="200">Person</response>
+            <response code="400">Bad ID value</response>
+            <response code="404">ID Not Found</response>
+        </member>
+        <member name="M:CustomerAPI3.Controllers.CustomerController3.Search(System.String)">
+            <summary>
+            Search for people
+            </summary>
+            <param name="text">Search Text</param>
+            <returns>Search results</returns>
+            <response code="200">Success</response>
+            <response code="400">Missing Search Text</response>
+        </member>
+        <member name="M:CustomerAPI3.Controllers.CustomerController3.Delete(System.String)">
             <summary>
             Delete a person
             </summary>
@@ -78,7 +121,7 @@
             <response code="204">(deleted)</response>
             <response code="404">ID Not Found</response>
         </member>
-        <member name="M:CustomerAPI3.Controllers.CustomerController.AddUpdate(CustomerAPI3.Models.Customer)">
+        <member name="M:CustomerAPI3.Controllers.CustomerController3.AddUpdate(CustomerAPI3.Models.Customer)">
             <summary>
             Add / Update a Person Record. 
             If adding use the empty string or empty GUID as <c>_id</c>
@@ -434,6 +477,16 @@
         <member name="P:CustomerAPI3.Startup.Configuration">
             <summary>
             Configuration Property
+            </summary>
+        </member>
+        <member name="F:CustomerAPI3.Startup.CommonVersion">
+            <summary>
+            Common
+            </summary>
+        </member>
+        <member name="F:CustomerAPI3.Startup.MinorVersion">
+            <summary>
+            Minor Version
             </summary>
         </member>
         <member name="M:CustomerAPI3.Startup.ConfigureServices(Microsoft.Extensions.DependencyInjection.IServiceCollection)">

@@ -34,7 +34,15 @@ namespace CustomerAPI3
         /// </summary>
         public IConfiguration Configuration { get; }
 
-        private const string CommonVersion = "common";
+        /// <summary>
+        /// Common
+        /// </summary>
+        public const string CommonVersion = "common";
+        
+        /// <summary>
+        /// Minor Version
+        /// </summary>
+        public const string MinorVersion = "v2";
 
         /// <summary>
         /// This method gets called by the runtime. Use this method to add services to the container.
@@ -72,8 +80,28 @@ namespace CustomerAPI3
                 }
             );
 
+
             services.AddSwaggerGen(swag =>
             {
+
+                swag.SwaggerDoc(MinorVersion,
+                    new OpenApiInfo()
+                    {
+                        Contact = new OpenApiContact()
+                        {
+                            Email = "spookdejur@hotmail.com",
+                            Name = "Stuart Williams",
+                            Url = new Uri("https://github.com/blitzkriegsoftware/customerapi")
+                        },
+                        Description = Program.ProgramMetadata.Description,
+                        License = new OpenApiLicense()
+                        {
+                            Name = "MIT",
+                            Url = new Uri("https://opensource.org/licenses/MIT")
+                        },
+                        Title = Program.ProgramMetadata.Description,
+                        Version = Program.ProgramMetadata.SemanticVersion
+                    });
 
                 swag.SwaggerDoc(Program.ProgramMetadata.MajorVersion,
                     new OpenApiInfo()
@@ -166,7 +194,10 @@ namespace CustomerAPI3
                 ui.InjectStylesheet("/assets/css/Override.css");
                 ui.InjectJavascript("/assets/js/AddLogo.js");
 
+                ui.SwaggerEndpoint($"/swagger/{MinorVersion}/swagger.json", $"{Program.ProgramMetadata.Description} {MinorVersion}");
+
                 ui.SwaggerEndpoint($"/swagger/{Program.ProgramMetadata.MajorVersion}/swagger.json", $"{Program.ProgramMetadata.Description} {Program.ProgramMetadata.MajorVersion}");
+
                 ui.SwaggerEndpoint($"/swagger/{CommonVersion}/swagger.json", $"Common {Program.ProgramMetadata.MajorVersion}");
 
                 ui.ShowExtensions();

@@ -11,9 +11,9 @@ namespace CustomerAPI3.Controllers
     /// Customer Operations
     /// </summary>
     [ApiController]
-    [Route("/v3/Person")]
+    [Route("/v2/Person")]
     [Produces("application/json")]
-    [ApiExplorerSettings(GroupName ="v3")]
+    [ApiExplorerSettings(GroupName = Startup.MinorVersion)]
     public class CustomerController : ControllerBase
     {
         private readonly ILogger<CustomerController> _logger;
@@ -88,71 +88,32 @@ namespace CustomerAPI3.Controllers
             }
 
             var results = DataAccess.DataFactory.People.Where(p => ((p.NameFirst.Contains(text) || p.NameLast.Contains(text) || p.EMail.Contains(text)))).ToList();
+
             return results;
         }
 
         /// <summary>
-        /// Delete a person
+        /// Return the 1st match of a search
         /// </summary>
-        /// <param name="id">Id to delete</param>
-        /// <response code="200">(ok)</response>
-        /// <response code="204">(deleted)</response>
-        /// <response code="404">ID Not Found</response>
-        [ProducesResponseType(typeof(void), 200)]
-        [ProducesResponseType(typeof(void), 204)]
-        [ProducesResponseType(typeof(void), 404)]
-        [HttpDelete("{id}")]
-        public void Delete(string id)
-        {
-            this._logger.LogInformation("Delete: {0}", id);
-
-            var model = DataAccess.DataFactory.People.Where(p => p._id == id).FirstOrDefault();
-            if (model == null)
-            {
-                throw new KeyNotFoundException("No Key Found Matching: " + id);
-            }
-            DataAccess.DataFactory.PersonList.Remove(model);
-            if (this.Response != null) this.Response.StatusCode = (int) HttpStatusCode.NoContent;
-        }
-
-        /// <summary>
-        /// Add / Update a Person Record. 
-        /// If adding use the empty string or empty GUID as <c>_id</c>
-        /// </summary>
-        /// <param name="model">Person</param>
-        /// <returns>Person</returns>
-        /// <response code="200">Person</response>
-        /// <response code="201">Person</response>
-        /// <response code="404">Not Found</response>
-        [HttpPost("{id}")]
+        /// <param name="text">Search Text</param>
+        /// <returns>First Customer that Matches</returns>
         [ProducesResponseType(typeof(Models.Customer), 200)]
-        [ProducesResponseType(typeof(Models.Customer), 201)]
-        [ProducesResponseType(typeof(void), 404)]
-        public Models.Customer AddUpdate(Models.Customer model)
+        [ProducesResponseType(typeof(void), 400)]
+        [HttpGet("First/{text}")]
+        public Models.Customer First(string text)
         {
-            if(model == null)
+            this._logger.LogInformation("Search: {0}", text);
+
+            if (string.IsNullOrWhiteSpace(text))
             {
-                throw new ArgumentNullException(nameof(model));
+                throw new ArgumentException("Search Text must be provided", nameof(text));
             }
 
-            this._logger.LogInformation("Add/Update: {0}", model._id);
-
-            var model2 = DataAccess.DataFactory.People.Where(p => p._id == model._id).FirstOrDefault();
-
-            if ((string.IsNullOrWhiteSpace(model._id)) || (model._id == Guid.Empty.ToString()) || (model2 == null))
-            {
-                if ((string.IsNullOrWhiteSpace(model._id)) || (model._id == Guid.Empty.ToString())) model._id = Guid.NewGuid().ToString();
-                DataAccess.DataFactory.PersonList.Add(model);
-                if(this.Response != null) this.Response.StatusCode = (int)HttpStatusCode.Created;
-            }
-            else
-            {
-                DataAccess.DataFactory.PersonList.Remove(model2);
-                DataAccess.DataFactory.PersonList.Add(model);
-            }
-
+            var model = DataAccess.DataFactory.People.Where(p => ((p.NameFirst.Contains(text) || p.NameLast.Contains(text) || p.EMail.Contains(text)))).FirstOrDefault();
+            
             return model;
+
         }
-        
+
     }
 }
